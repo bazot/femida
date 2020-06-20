@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useCallback } from "react";
+
+import storiesService from "../services/stories";
 
 export interface IStory {
   id: number;
@@ -10,14 +12,22 @@ export interface IUserStoryProps {
 }
 const UserStory = (props: IUserStoryProps) => {
   const [userStory, setUserStory] = React.useState("");
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    props.onAddStory({
-      id: props.nextStoryId,
-      text: userStory
-    });
-    setUserStory("");
-  };
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const onSubmit = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      setIsSubmitting(true);
+      try {
+        const savedStory = await storiesService.createStory(userStory);
+        console.log({ savedStory });
+      } catch (error) {
+        console.log("Failed ", error);
+      }
+      setIsSubmitting(false);
+      setUserStory("");
+    },
+    [setIsSubmitting, setUserStory, userStory]
+  );
   return (
     <div
       id="inputBox"
@@ -28,6 +38,7 @@ const UserStory = (props: IUserStoryProps) => {
     >
       <form onSubmit={onSubmit}>
         <input
+          disabled={isSubmitting}
           value={userStory}
           onChange={e => setUserStory(e.target.value)}
           required
@@ -38,8 +49,10 @@ const UserStory = (props: IUserStoryProps) => {
             height: 200
           }}
         />
+        <button type="submit" id="addUserStoryBtn" disabled={isSubmitting}>
+          {isSubmitting ? "Saving..." : "Judge me!"}
+        </button>
       </form>
-      <button id="addUserStoryBtn">Judge me!</button>
     </div>
   );
 };

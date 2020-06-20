@@ -2,7 +2,7 @@ import "@firebase/auth";
 import { FirebaseAuth } from "@firebase/auth-types";
 import firebaseService from "./firebase";
 
-class AuthService {
+export class AuthService {
   auth: FirebaseAuth;
   constructor() {
     if (!firebaseService.auth) {

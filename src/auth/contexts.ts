@@ -1,7 +1,7 @@
 import React from "react";
 import { User } from "@firebase/auth-types";
 
-import AuthService from "./AuthService";
+import { AuthService } from "../services/auth";
 
 export const currentUserCtx = React.createContext<User | null>(null);
 

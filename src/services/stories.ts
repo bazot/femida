@@ -3,7 +3,7 @@ import { FirebaseDatabase, Reference } from "@firebase/database-types";
 import firebaseService, { config } from "./firebase";
 import authService from "./auth";
 
-class StoriesService {
+export class StoriesService {
   db: FirebaseDatabase;
   rootRef: Reference;
   storiesRef: Reference;
