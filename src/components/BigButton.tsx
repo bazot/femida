@@ -11,11 +11,6 @@ const BigButton = (props: IButtonProps) => {
       className={`BigButton ${
         props.variant === "good" ? "BigButton__good" : "BigButton__bad"
       }`}
-      style={{
-        width: 100,
-        height: 50,
-        background: props.variant === "bad" ? "red" : "green"
-      }}
       onClick={props.onClick}
     >
       {props.children}

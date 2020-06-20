@@ -13,7 +13,10 @@ function getRandIntinRange(max: number) {
 
 export default function App() {
   const currentUser = useContext(currentUserCtx);
-  const [stories, setStories] = useState<IStory[]>([]);
+  const [stories, setStories] = useState<IStory[]>([
+    { text: "huy", id: 1 },
+    { text: "huy2", id: 2 }
+  ]);
   const [currentStory, setCurrentStory] = useState<IStory | null>(
     stories[0] || null
   );
@@ -37,8 +40,15 @@ export default function App() {
     <PageLayout>
       {currentStory && <StoryPoll story={currentStory} />}
       {stories.length > 1 && (
-        <div style={{ width: "100%", height: 50, textAlign: "right" }}>
-          <button onClick={onNextStory}>Next</button>
+        <div>
+          <button className="nextStoryButton" onClick={onNextStory}>
+            <input
+              type="image"
+              src="./pictures/arrow.png"
+              className="arrowButton"
+              alt="next story"
+            />
+          </button>
         </div>
       )}
 
