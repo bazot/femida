@@ -16,11 +16,20 @@
     "@firebase/database": "0.6.5",
     "@firebase/database-types": "0.5.1",
     "@types/react-router-dom": "5.1.5",
+    "apollo-cache-inmemory": "1.6.6",
+    "apollo-client": "2.6.10",
+    "apollo-link": "1.2.14",
+    "apollo-link-http": "1.5.17",
+    "apollo-link-ws": "1.0.20",
+    "graphql": "15.2.0",
+    "graphql-tag": "2.10.3",
     "react": "^16.12.0",
+    "react-apollo": "3.1.5",
     "react-dom": "^16.12.0",
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
-    "react-scripts": "3.3.0"
+    "react-scripts": "3.3.0",
+    "subscriptions-transport-ws": "0.9.16"
   },
   "devDependencies": {
     "@types/react": "16.9.19",

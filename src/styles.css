@@ -1,10 +1,30 @@
-.App {
-  font-family: sans-serif;
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  font-family: monospace;
 }
 
 .userStoryinput {
   width: 100%;
   height: 150px;
+}
+
+input[type="text"],
+textarea {
+  font-family: monospace;
+}
+
+.MyStoryLabel {
+  display: inline-flex;
+  flex-grow: 0;
+  padding: 2px 5px;
+  border-radius: 50% 20% 40% 34%;
+  background: #ffeb3b;
+  color: black;
+  text-shadow: 1px 1px 0px white;
+  color: #5a9964;
 }
 
 .BigButton {
@@ -23,6 +43,33 @@
   color: #5a9964;
 }
 
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.StoryCard {
+  /* border: 1px solid black; */
+  padding: 10px;
+  display: flex;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  background: rgb(236, 236, 236);
+  transition: background-color, transform 100ms ease;
+}
+.StoryCard:hover {
+  background: #ffeb3b4a;
+  transform: scale(1.1);
+  outline: none;
+}
+
 .BigButton__bad {
   border: 2px solid #b84d4d;
   color: #b84d4d;
@@ -39,6 +86,7 @@
   color: #ffffff;
   border: 0px;
 }
+
 .nextStoryButton {
   text-align: right;
   float: right;

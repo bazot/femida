@@ -6,6 +6,7 @@ import App from "./App";
 import SignIn from "./auth/components/SignIn";
 import SignUp from "./auth/components/SignUp";
 import SignOut from "./auth/components/SignOut";
+import Story from "./components/Story";
 
 const Routes = () => {
   return (
@@ -15,6 +16,7 @@ const Routes = () => {
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Route path="/signout" component={SignOut} />
+        <Route path="/stories/:id" component={Story} />
         <Redirect to="/app" />
       </Switch>
     </BrowserRouter>

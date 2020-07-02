@@ -2,21 +2,18 @@ import React, { useState, useEffect, useCallback, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./styles.css";
 
-import { currentUserCtx } from "./auth/contexts";
-import StoryPoll from "./components/StoryPoll";
+import { authCtx } from "./auth/contexts";
 import UserStory, { IStory, IUserStoryProps } from "./components/UserStory";
 import PageLayout from "./components/PageLayout";
+import RecentStories from "./stories/components/MyStories";
 
 function getRandIntinRange(max: number) {
   return Math.floor(Math.random() * max);
 }
 
 export default function App() {
-  const currentUser = useContext(currentUserCtx);
-  const [stories, setStories] = useState<IStory[]>([
-    { text: "huy", id: 1 },
-    { text: "huy2", id: 2 }
-  ]);
+  const auth = useContext(authCtx);
+  const [stories, setStories] = useState<IStory[]>([]);
   const [currentStory, setCurrentStory] = useState<IStory | null>(
     stories[0] || null
   );
@@ -38,32 +35,20 @@ export default function App() {
 
   return (
     <PageLayout>
-      {currentStory && <StoryPoll story={currentStory} />}
-      {stories.length > 1 && (
-        <div>
-          <button className="nextStoryButton" onClick={onNextStory}>
-            <input
-              type="image"
-              src="./pictures/arrow.png"
-              className="arrowButton"
-              alt="next story"
-            />
-          </button>
-        </div>
-      )}
-
+      <header style={{ marginBottom: 20, textAlign: "right" }}>
+        {auth.user ? (
+          <>
+            <div>
+              <i>{auth.user.email}</i>
+            </div>
+            <Link to="/signout">Sign Out</Link>
+          </>
+        ) : (
+          <Link to="/signin">Sign In</Link>
+        )}
+      </header>
       <UserStory nextStoryId={stories.length + 1} onAddStory={onAddStory} />
-      <br />
-      {currentUser ? (
-        <>
-          <p>
-            Signed in as <i>{currentUser.email}</i>
-          </p>
-          <Link to="/signout">Sign Out</Link>
-        </>
-      ) : (
-        <Link to="/signin">Sign In</Link>
-      )}
+      <RecentStories />
     </PageLayout>
   );
 }
